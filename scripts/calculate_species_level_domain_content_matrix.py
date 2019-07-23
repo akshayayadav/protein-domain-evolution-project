@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import re
 import sys
@@ -15,7 +15,7 @@ def get_species_domain_dict(species_pfamscan_files_dirName):
 				continue
 			linearr = re.split(r'\s+', line)
 			domain_name = linearr[6]
-			if(species_domain_dict.has_key(species_pfamscan_fileName)):
+			if(species_pfamscan_fileName in species_domain_dict):
 				species_domain_dict[species_pfamscan_fileName][domain_name]=1
 			else:
 				species_domain_dict[species_pfamscan_fileName]={}
@@ -40,11 +40,11 @@ def get_domain_feature_matrix_for_species(species_domain_dict, domain_feature_ve
 	domain_feature_vector.pop(0)
 	count=0
 	for species in species_domain_dict:
-		print species
+		print (species)
 		feature_vector = list()
 		feature_vector.append(species)
 		for domain in domain_feature_vector:
-			if(species_domain_dict[species].has_key(domain)):
+			if(domain in species_domain_dict[species]):
 				feature_vector.append(1)
 			else:
 				feature_vector.append(0)
@@ -58,9 +58,9 @@ def remove_common_domains(domain_feature_matrix):
 	return(domain_feature_matrix)		
 		
 def print_domain_content_matrix(domain_feature_matrix):
-	domain_feature_matrix.to_csv("papil/papil.domain_content_matrix", index=False)
+	domain_feature_matrix.to_csv("/data/matrix_results/domain_content.matrix", index=False)
 ###########################################################################################################################
-species_pfamscan_files_dirName = "papil/papil_proteome_pfamscan_results/"
+species_pfamscan_files_dirName = "/data/pfamscan_results/"
 species_domain_dict = get_species_domain_dict(species_pfamscan_files_dirName)
 domain_feature_vector = get_domain_feature_vector(species_domain_dict)
 domain_feature_matrix = get_domain_feature_matrix_for_species(species_domain_dict, domain_feature_vector)

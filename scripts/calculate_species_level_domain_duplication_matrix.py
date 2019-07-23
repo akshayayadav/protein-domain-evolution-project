@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from __future__ import division
 import re
@@ -20,8 +20,8 @@ def get_species_seqid_domarr_dict(species_pfamscan_files_dirName):
 			seqid = linearr[0]
 			domain_name = linearr[6]
 			domain_feature_dict[domain_name] = 1
-			if(species_seqid_domarr_dict.has_key(species_pfamscan_fileName)):
-				if(species_seqid_domarr_dict[species_pfamscan_fileName].has_key(seqid)):
+			if(species_pfamscan_fileName in species_seqid_domarr_dict):
+				if(seqid in species_seqid_domarr_dict[species_pfamscan_fileName]):
 					species_seqid_domarr_dict[species_pfamscan_fileName][seqid].append(domain_name)
 				else:
 					species_seqid_domarr_dict[species_pfamscan_fileName][seqid]=list()
@@ -42,14 +42,14 @@ def get_species_domDuplicationCountarr_dict(species_seqid_domarr_dict):
 		for seq in species_seqid_domarr_dict[species]:
 			domDuplicationCount_dict = {}
 			for domain in species_seqid_domarr_dict[species][seq]:
-				if(domDuplicationCount_dict.has_key(domain)):
+				if(domain in domDuplicationCount_dict):
 					domDuplicationCount_dict[domain]+=1
 				else:
 					domDuplicationCount_dict[domain]=1
 			
 		
 			for domain in domDuplicationCount_dict:
-				if(species_domDuplicationCountarr_dict[species].has_key(domain)):
+				if(domain in species_domDuplicationCountarr_dict[species]):
 					species_domDuplicationCountarr_dict[species][domain].append(domDuplicationCount_dict[domain])
 				else:
 					species_domDuplicationCountarr_dict[species][domain] = list()
@@ -64,11 +64,11 @@ def get_domain_duplication_feature_matrix_for_species(species_domDuplicationCoun
 	count=0
 	
 	for species in species_domDuplicationCountarr_dict:
-		print species
+		print (species)
 		feature_vector = list()
 		feature_vector.append(species)
 		for domain in domain_feature_vector:
-			if(species_domDuplicationCountarr_dict[species].has_key(domain)):
+			if(domain in species_domDuplicationCountarr_dict[species]):
 				domain_duplication_count = species_domDuplicationCountarr_dict[species][domain]
 				#feature_vector.append(calculate_mean_duplication(domain_duplication_count))
 				feature_vector.append(calculate_mode_duplication(domain_duplication_count))
@@ -90,7 +90,10 @@ def remove_constantly_duplicated_domains(domain_feature_matrix):
 	return(domain_feature_matrix)
 
 def remove_nonduplicated_domains(domain_feature_matrix):
-	domain_feature_matrix = domain_feature_matrix.loc[:,domain_feature_matrix.apply(detect_nonduplicated_domains) > 1]
+	first_col = domain_feature_matrix['species']
+	domain_feature_matrix.drop(domain_feature_matrix.columns[0], axis=1, inplace=True)
+	domain_feature_matrix = domain_feature_matrix.loc[:,domain_feature_matrix.apply(detect_nonduplicated_domains)>1]
+	domain_feature_matrix.insert(loc=0, column='species', value=first_col)
 	return(domain_feature_matrix)
 
 def detect_nonduplicated_domains(domain_col):
@@ -98,10 +101,10 @@ def detect_nonduplicated_domains(domain_col):
 	return np.sum(domain_col.unique())
 
 def print_domain_feature_matrix(domain_feature_matrix):
-	domain_feature_matrix.to_csv("papil/papil.domain_duplication_mode_matrix", index=False)
+	domain_feature_matrix.to_csv("/data/matrix_results/domain_duplication_mode.matrix", index=False)
 	
 ################################################################################################################################
-species_pfamscan_files_dirName = "papil/papil_proteome_pfamscan_results/"
+species_pfamscan_files_dirName = "/data/pfamscan_results/"
 species_seqid_domarr_dict, domain_feature_vector = get_species_seqid_domarr_dict(species_pfamscan_files_dirName)
 species_domDuplicationCountarr_dict = get_species_domDuplicationCountarr_dict(species_seqid_domarr_dict)
 domain_feature_matrix = get_domain_duplication_feature_matrix_for_species(species_domDuplicationCountarr_dict, domain_feature_vector)

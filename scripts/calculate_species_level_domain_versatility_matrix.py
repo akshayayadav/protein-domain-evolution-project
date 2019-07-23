@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from __future__ import division
 import re
@@ -21,8 +21,8 @@ def get_species_seqid_domarr_dict(species_pfamscan_files_dirName):
 			seqid = linearr[0]
 			domain_name = linearr[6]
 			domain_feature_dict[domain_name] = 1
-			if(species_seqid_domarr_dict.has_key(species_pfamscan_fileName)):
-				if(species_seqid_domarr_dict[species_pfamscan_fileName].has_key(seqid)):
+			if(species_pfamscan_fileName in species_seqid_domarr_dict):
+				if(seqid in species_seqid_domarr_dict[species_pfamscan_fileName]):
 					species_seqid_domarr_dict[species_pfamscan_fileName][seqid].append(domain_name)
 				else:
 					species_seqid_domarr_dict[species_pfamscan_fileName][seqid]=list()
@@ -45,7 +45,7 @@ def get_species_domvrstlty_dict(species_seqid_domarr_dict):
 			dom1_dom2_dict = get_domain_adjacency_dict(dom_arr)
 
 			for dom1 in dom1_dom2_dict:
-				if not (species_domvrstlty_dict[species].has_key(dom1)):
+				if not (dom1 in species_domvrstlty_dict[species]):
 					species_domvrstlty_dict[species][dom1]={}
 				for dom2 in dom1_dom2_dict[dom1]:
 					species_domvrstlty_dict[species][dom1][dom2]=1
@@ -57,7 +57,7 @@ def get_domain_adjacency_dict(dom_arr):
 	if(len(dom_arr)<2):
 		return(dom1_dom2_dict)
 	for i in range(0, len(dom_arr)):
-		if not (dom1_dom2_dict.has_key(dom_arr[i])):
+		if not (dom_arr[i] in dom1_dom2_dict):
 			dom1_dom2_dict[dom_arr[i]]={}
 		
 		if(i==0):
@@ -82,11 +82,11 @@ def get_domain_versatility_feature_matrix_for_species(species_domvrstlty_dict, d
 	count=0
 	
 	for species in species_domvrstlty_dict:
-		print species
+		print (species)
 		feature_vector = list()
 		feature_vector.append(species)
 		for domain in domain_feature_vector:
-			if(species_domvrstlty_dict[species].has_key(domain)):
+			if(domain in species_domvrstlty_dict[species]):
 				if(len(species_domvrstlty_dict[species][domain])>0):
 					feature_vector.append(1/len(species_domvrstlty_dict[species][domain]))
 				else:
@@ -103,10 +103,10 @@ def remove_constantly_versatile_domains(domain_feature_matrix):
 	return(domain_feature_matrix)
 
 def print_domain_feature_matrix(domain_feature_matrix):
-	domain_feature_matrix.to_csv("papil/papil.domain_versatility_matrix", index=False)
+	domain_feature_matrix.to_csv("/data/matrix_results/domain_versatility.matrix", index=False)
 
 #########################################################################################################################################
-species_pfamscan_files_dirName = "papil/papil_proteome_pfamscan_results/"
+species_pfamscan_files_dirName = "/data/pfamscan_results/"
 species_seqid_domarr_dict, domain_feature_vector = get_species_seqid_domarr_dict(species_pfamscan_files_dirName)
 species_domvrstlty_dict = get_species_domvrstlty_dict(species_seqid_domarr_dict)
 domain_feature_matrix = get_domain_versatility_feature_matrix_for_species(species_domvrstlty_dict, domain_feature_vector)

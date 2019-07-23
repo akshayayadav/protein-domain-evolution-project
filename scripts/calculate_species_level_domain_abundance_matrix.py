@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 
 from __future__ import division
 import re
@@ -21,8 +21,8 @@ def get_species_seqid_domarr_dict(species_pfamscan_files_dirName):
 			seqid = linearr[0]
 			domain_name = linearr[6]
 			domain_feature_dict[domain_name] = 1
-			if(species_seqid_domarr_dict.has_key(species_pfamscan_fileName)):
-				if(species_seqid_domarr_dict[species_pfamscan_fileName].has_key(seqid)):
+			if(species_pfamscan_fileName in species_seqid_domarr_dict):
+				if(seqid in species_seqid_domarr_dict[species_pfamscan_fileName]):
 					species_seqid_domarr_dict[species_pfamscan_fileName][seqid].append(domain_name)
 				else:
 					species_seqid_domarr_dict[species_pfamscan_fileName][seqid]=list()
@@ -47,7 +47,7 @@ def get_species_domAbdnce_dict(species_seqid_domarr_dict):
 			
 		
 			for domain in seq_dom_dict:
-				if(species_domAbdnce_dict[species].has_key(domain)):
+				if(domain in species_domAbdnce_dict[species]):
 					species_domAbdnce_dict[species][domain]+=1
 				else:
 					species_domAbdnce_dict[species][domain]=1
@@ -64,11 +64,11 @@ def get_domain_abundance_feature_matrix_for_species(species_domAbdnce_dict, doma
 	count=0
 	
 	for species in species_domAbdnce_dict:
-		print species
+		print (species)
 		feature_vector = list()
 		feature_vector.append(species)
 		for domain in domain_feature_vector:
-			if(species_domAbdnce_dict[species].has_key(domain)):
+			if(domain in species_domAbdnce_dict[species]):
 				feature_vector.append(species_domAbdnce_dict[species][domain])
 			else:
 				feature_vector.append(0)
@@ -82,10 +82,10 @@ def remove_constantly_abundant_domains(domain_feature_matrix):
 	return(domain_feature_matrix)
 
 def print_domain_feature_matrix(domain_feature_matrix):
-	domain_feature_matrix.to_csv("papil/papil.domain_abundance_matrix", index=False)
+	domain_feature_matrix.to_csv("/data/matrix_results/domain_abundance.matrix", index=False)
 
 ############################################################################################################################
-species_pfamscan_files_dirName = "papil/papil_proteome_pfamscan_results/"
+species_pfamscan_files_dirName = "/data/pfamscan_results/"
 species_seqid_domarr_dict, domain_feature_vector = get_species_seqid_domarr_dict(species_pfamscan_files_dirName)
 species_domAbdnce_dict = get_species_domAbdnce_dict(species_seqid_domarr_dict)
 domain_feature_matrix = get_domain_abundance_feature_matrix_for_species(species_domAbdnce_dict, domain_feature_vector)
