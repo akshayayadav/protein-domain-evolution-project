@@ -46,6 +46,7 @@ RUN apt-get update \
   && apt-get clean
 
 RUN pip3 install snakemake
+RUN pip3 install pandas
 
 ADD scripts /usr/local/bin
 RUN chmod +x /usr/local/bin/*
