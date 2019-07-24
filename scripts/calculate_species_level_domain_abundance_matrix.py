@@ -3,6 +3,7 @@
 from __future__ import division
 import re
 import os
+import sys
 import pandas as pd
 import numpy as np
 from math import log
@@ -82,10 +83,12 @@ def remove_constantly_abundant_domains(domain_feature_matrix):
 	return(domain_feature_matrix)
 
 def print_domain_feature_matrix(domain_feature_matrix):
-	domain_feature_matrix.to_csv("/data/matrix_results/domain_abundance.matrix", index=False)
+	#domain_feature_matrix.to_csv("/data/matrix_results/domain_abundance.matrix", index=False)
+	domain_feature_matrix.to_csv(sys.argv[2], index=False)
 
 ############################################################################################################################
-species_pfamscan_files_dirName = "/data/pfamscan_results/"
+#species_pfamscan_files_dirName = "/data/pfamscan_results/"
+species_pfamscan_files_dirName = sys.argv[1]
 species_seqid_domarr_dict, domain_feature_vector = get_species_seqid_domarr_dict(species_pfamscan_files_dirName)
 species_domAbdnce_dict = get_species_domAbdnce_dict(species_seqid_domarr_dict)
 domain_feature_matrix = get_domain_abundance_feature_matrix_for_species(species_domAbdnce_dict, domain_feature_vector)
