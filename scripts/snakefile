@@ -1,19 +1,19 @@
-#TARGETS = ['medtr.pep.fa', 'theca.pep.fa', 'aradu.pep.fa', 'vigra.pep.fa', 'orysa.pep.fa', 'cucsa.pep.fa', 'vigan.pep.fa', 'vitvi.pep.fa', 'tripr.pep.fa', 'glyma.pep.fa', 'cajca.pep.fa', 'arath.pep.fa', 'poptr.pep.fa', 'lotja.pep.fa', 'prupe.pep.fa', 'araip.pep.fa', 'gosra.pep.fa', 'arahy.pep.fa', 'lupan.pep.fa', 'zeama.pep.fa', 'vigun.pep.fa', 'solly.pep.fa', 'cicar.pep.fa', 'phavu.pep.fa']
-
-TARGETS, = glob_wildcards("../data/fasta/{name}")
+TARGETS, = glob_wildcards("/data/fasta/{name}")
 
 rule all:
  input: 
-  "../data/matrix_results/domain_content.matrix",
-  "../data/matrix_results/domain_duplication_mode.matrix"
+  "/data/matrix_results/domain_content.matrix",
+  "/data/matrix_results/domain_duplication_mode.matrix",
+  "/data/matrix_results/domain_abundance.matrix",
+  "/data/matrix_results/domain_versatility.matrix"
 
 rule pfamscan:
  input:
-  fa = "../data/fasta/{target}",
-  pfam_db = "../data/pfam_database/"
+  fa = "/data/fasta/{target}",
+  pfam_db = "/data/pfam_database/"
 
  output:
-  "../data/pfamscan_results/{target}.pfamscan"
+  "/data/pfamscan_results/{target}.pfamscan"
 
  shell:
   "pfam_scan.pl -fasta {input.fa} -dir {input.pfam_db} -outfile {output} -e_seq 1e-5 -e_dom 1e-5"
@@ -21,19 +21,39 @@ rule pfamscan:
 
 rule domain_content_matrix:
  input:
-  pf_out = expand("../data/pfamscan_results/{target}.pfamscan", target=TARGETS),
-  pf_out_dir="../data/pfamscan_results/"
+  pf_out = expand("/data/pfamscan_results/{target}.pfamscan", target=TARGETS),
+  pf_out_dir="/data/pfamscan_results/"
  output:
-  "../data/matrix_results/domain_content.matrix"
+  "/data/matrix_results/domain_content.matrix"
  shell:
   "calculate_species_level_domain_content_matrix.py {input.pf_out_dir} {output}"
 
 
-rule domain_abundance_matrix:
+rule domain_duplication_matrix:
  input:
-  pf_out = expand("../data/pfamscan_results/{target}.pfamscan", target=TARGETS),
-  pf_out_dir="../data/pfamscan_results/"
+  pf_out = expand("/data/pfamscan_results/{target}.pfamscan", target=TARGETS),
+  pf_out_dir="/data/pfamscan_results/"
  output:
-  "../data/matrix_results/domain_duplication_mode.matrix"
+  "/data/matrix_results/domain_duplication_mode.matrix"
  shell:
   "calculate_species_level_domain_duplication_matrix.py {input.pf_out_dir} {output}"
+
+rule domain_abundance_matrix:
+ input:
+  pf_out = expand("/data/pfamscan_results/{target}.pfamscan", target=TARGETS),
+  pf_out_dir="/data/pfamscan_results/"
+
+ output:
+  "/data/matrix_results/domain_abundance.matrix"
+ shell:
+  "calculate_species_level_domain_abundance_matrix.py {input.pf_out_dir} {output}"
+
+rule domain_versatility_matrix:
+ input:
+  pf_out = expand("/data/pfamscan_results/{target}.pfamscan", target=TARGETS),
+  pf_out_dir="/data/pfamscan_results/"
+
+ output:
+  "/data/matrix_results/domain_versatility.matrix"
+ shell:
+  "calculate_species_level_domain_versatility_matrix.py {input.pf_out_dir} {output}"
