@@ -1,0 +1,14 @@
+TARGETS = ['medtr.pep.fa', 'theca.pep.fa', 'aradu.pep.fa', 'vigra.pep.fa', 'orysa.pep.fa', 'cucsa.pep.fa', 'vigan.pep.fa', 'vitvi.pep.fa', 'tripr.pep.fa', 'glyma.pep.fa', 'cajca.pep.fa', 'arath.pep.fa', 'poptr.pep.fa', 'lotja.pep.fa', 'prupe.pep.fa', 'araip.pep.fa', 'gosra.pep.fa', 'arahy.pep.fa', 'lupan.pep.fa', 'zeama.pep.fa', 'vigun.pep.fa', 'solly.pep.fa', 'cicar.pep.fa', 'phavu.pep.fa']
+
+rule all:
+	input: expand("../data/pfamscan_results/{target}.pfamscan", target=TARGETS)
+
+rule pfamscan:
+	input:
+		fa = "../data/pfamscan_results/{target}"
+		pfam_db = "../data/pfam_database/"
+
+ 	output:"../data/pfamscan_results/{target}.pfamscan"
+
+ 	shell:
+  	"pfam_scan.pl -fasta {input.fa} -dir {input.pfam_db} -outfile {output} -e_seq 1e-5 -e_dom 1e-5"
