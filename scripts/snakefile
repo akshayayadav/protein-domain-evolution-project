@@ -5,7 +5,8 @@ rule all:
 
 rule pfamscan:
  input:
-  fa = expand("../data/fasta/{target}", target=TARGETS),
+  #fa = expand("../data/fasta/{target}", target=TARGETS),
+  fa = "../data/fasta/{target}",
   pfam_db = "../data/pfam_database/"
 
  output:
