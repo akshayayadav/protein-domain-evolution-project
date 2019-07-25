@@ -74,6 +74,7 @@ def export_plot(domain_results, plot_outfile):
 	ax.tick_params(axis = 'both', which = 'major', labelsize = 20)
 	ax.tick_params(axis = 'both', which = 'minor', labelsize = 20)
 	plt.grid(True)
+	plt.title("Protein domain abundance results", fontsize=50)
 	plt.savefig(plot_outfile)
 ################################################################################################################################################
 matrix_fileName = sys.argv[1]
