@@ -19,7 +19,7 @@ git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-pro
 ```
 3. Download the dataset (fasta, pfam, species.label; test data available) and copy into the project directory.
 ```
-scp -r data $USERNAME@xxx.xxx.xxx.xx:/home/$USERNAME/protein-domain-evolution-project/
+scp -r <download dir>/data $USERNAME@xxx.xxx.xxx.xx:/home/$USERNAME/protein-domain-evolution-project/
 ```
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile
