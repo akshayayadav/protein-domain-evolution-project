@@ -91,5 +91,5 @@ sorted_domain_mutual_info_scores = calculate_domain_mutual_info_scores(X_domain_
 domain_signifance_test_results = run_signifance_tests_on_domain_cols(X_domain_matrix, y_labels)
 domain_results = join_MI_results_with_significance_results(sorted_domain_mutual_info_scores, domain_signifance_test_results)
 domain_results = multiple_testing_correction(domain_results)
-print_significant_domains(domain_results, outdir)
-export_plot(domain_results, outdir)
+print_significant_domains(domain_results, results_outfile)
+export_plot(domain_results, plot_outfile)
