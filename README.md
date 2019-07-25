@@ -31,7 +31,7 @@ Protein domains are independent sections of protein sequences that can have func
    # get the username and IP address
    ssh $USER@xxx.xxx.xxx.xxx
    ```
-2. Fork this github repository with scripts (python scripts, snakefile, .sh) along with the dockerfile.
+2. Download this github repository with scripts (python scripts, snakefile, .sh) along with the dockerfile.
    ```
    git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-project.git
    ```
