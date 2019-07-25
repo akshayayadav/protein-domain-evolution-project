@@ -36,7 +36,7 @@ scp -r <download dir>/test_data $USER@xxx.xxx.xxx.xx:/home/$USER/Group5-protein-
 ```
 then upzip it using 
 ```
-zip test_data.zip
+unzip test_data.zip
 ```
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile (explanation)
