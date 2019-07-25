@@ -14,8 +14,13 @@ If you are a total beginner to this, start here!
 
 1. Launch an instance on Jetstream, using Ubuntu 18.04 Devel and Docker v1.22, with m1.xlarge (CPU: 24, Mem: 60 GB, Disk: 60 GB)
 2. Fork this github repository with scripts (python scripts, snakefile, .sh) along with the dockerfile.
-3. Create a new folder "data" in the directory, download two datasets (fasta and pfam) into ../data directory.
-
+```
+git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-project
+```
+3. Download the dataset (fasta, pfam, species.label; test data available) and copy into the project directory.
+```
+scp -r data $USERNAME@xxx.xxx.xxx.xx:/home/$USERNAME/protein-domain-evolution-project/
+```
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile
 1. install make, perl, hmmer, pfamscan
