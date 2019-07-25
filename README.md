@@ -29,7 +29,7 @@ scp -r <download dir>/data $USER@xxx.xxx.xxx.xx:/home/$USER/protein-domain-evolu
 ```
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile (explanation)
-1. Install make, perl, hmmer, pfamscan
+1. Install make, perl #v5.22.1, hmmer, pfamscan
 ```bash
 FROM ubuntu:16.04
 RUN apt-get update && \
