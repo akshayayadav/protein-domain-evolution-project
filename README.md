@@ -21,7 +21,7 @@ If you are a total beginner to this, start here!
    
 2. Fork this github repository with scripts (python scripts, snakefile, .sh) along with the dockerfile.
 ```
-git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-project
+git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-project.git
 ```
 3. Download the dataset (fasta, pfam, species.label; test data available) and copy into the project directory.
 ```
