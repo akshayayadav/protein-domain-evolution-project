@@ -1,9 +1,5 @@
 Protein Domain Evolution
 ===
-## Group members
-- Akshay Yadav
-- Sumegha Godara
-- Yafang Guo
 
 Protein domains are independent sections of protein sequences that can have function distint functions. One of the major ways in which proteins can evovle is through domain insertion/delection/duplication. In this project we will attempt to build an analysis pipeline that will take in 2 groups of species proteomes and find differences in domain compositions between the two groups. The whole pipeline will be packaged inside a docker container which can executed  on any given data in any machine environment.
 
@@ -14,6 +10,10 @@ Protein domains are independent sections of protein sequences that can have func
 
 * The HMM file containing Pfam domains from  [Pfam](https://pfam.xfam.org/) database which contains registry of all the domains found in all the organisms. The HMM file must be processed using hmmpress program to create a HMM database. For more details on how to use the hmmpress tool please see the HMMER [user manual](http://hmmer.org/documentation.html).
 
+## Group members
+- Akshay Yadav
+- Sumegha Godara
+- Yafang Guo
 
 ## 1. Goals
 
