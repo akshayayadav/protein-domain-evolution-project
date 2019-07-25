@@ -24,6 +24,7 @@ If you are a total beginner to this, start here!
 git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-project.git
 ```
 3. Download the dataset (fasta, pfam, species.label; test data available) and copy into the project directory.
+  $USER is the username showed in echo $USER in VM. 
 ```
 scp -r <download dir>/data $USER@xxx.xxx.xxx.xx:/home/$USER/protein-domain-evolution-project/
 ```
