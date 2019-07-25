@@ -4,6 +4,8 @@ Protein Domain Evolution
 
 ## 1. Goals
 
+If you are a total beginner to this, start here!
+
 1. Creat a docker file to build a container which will not require any software installation to run.
 2. Write a Snakemake file to generate a workflow and run the analysis in parallel.
 3. Dockerize the project to make it reproducible.
@@ -20,7 +22,7 @@ git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-pro
 scp -r data $USERNAME@xxx.xxx.xxx.xx:/home/$USERNAME/protein-domain-evolution-project/
 ```
 ## 3. Build a Docker container
-### 3.1 Starting from Dockerfile (explanation)
+### 3.1 Starting from Dockerfile
 1. install make, perl, hmmer, pfamscan
 ```bash
 FROM ubuntu:16.04
@@ -32,16 +34,16 @@ RUN apt-get update && \
 2. install python3 and libs to run the scripts
 ```
 RUN apt-get update \
-  && apt-get install -y python3-pip python3-dev
-RUN pip3 install pandas
-RUN pip3 install rpy2
-RUN pip3 install scipy
-RUN pip3 install sklearn
-RUN pip3 install matplotlib
+  && apt-get install -y python3-pip python3-dev  #Version:Python 3.5.2
+RUN pip3 install pandas #Version:0.24.2
+RUN pip3 install rpy2   #Version:3.0.5
+RUN pip3 install scipy  #Version:1.3.0
+RUN pip3 install sklearn  #Version:0.21.2
+RUN pip3 install matplotlib #Version:3.0.3
 ```
 3. install snakemake as the workflow management system
 ```
-RUN pip3 install snakemake
+RUN pip3 install snakemake #Version:5.5.4
 ```
 4. add scripts for data analysis inside the container
 ```
@@ -49,7 +51,7 @@ ADD scripts /usr/local/bin
 # make the scripts executable
 RUN chmod +x /usr/local/bin/* 
 ```
-### 3.2 Making the snakemake workflow file (explanation)
+### 3.2 Making the snakemake workflow file
 
 1. The analysis includes three steps. 
 - assigning pfam protein domains to species fasta
@@ -75,7 +77,7 @@ rule domain_versatility_matrix:
 ```
 
 ```
-### 3.3 Build the container using Docker (hands on)
+### 3.3 Build the container using Docker
 
 Once the dockerfile and snakefile are ready, build the container using virtual machine as:
 
@@ -84,7 +86,7 @@ docker build -t domainevolution -f Docker/Dockerfile .
 ```
 Use ```docker images``` to check the built images
 
-### 3.4 Create and run a writeable container layer over the built image (hands on)
+### 3.4 Create and run a writeable container layer over the built image
 
 Since the data directory is not built into the container, we need to bind mount a volume with the data directory into the container. 
 
