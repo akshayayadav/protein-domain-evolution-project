@@ -17,25 +17,25 @@ Protein domains are independent sections of protein sequences that can have func
 
 ## 1. Goals
 
-1. Construct a container with all the programs and dependencies required for the pipeline to run. The analysis pipeline is composed of 3 major steps viz. assigning domains to sequences in fasta, calculating domain matrices, and statistical analysis of domain matrices.
+a). Construct a container with all the programs and dependencies required for the pipeline to run. The analysis pipeline is composed of 3 major steps viz. assigning domains to sequences in fasta, calculating domain matrices, and statistical analysis of domain matrices.
  
-2. Implementation of the analysis pipeline on snakemake worfkflow engine.
+b). Implementation of the analysis pipeline on snakemake worfkflow engine.
 
-3. Testing the reproducibility of the pipeline.
+c). Testing the reproducibility of the pipeline.
 
 ## 2. How to start
 
-2.1 Launch an instance on Jetstream, using Ubuntu 18.04 Devel and Docker v1.22, with m1.xlarge (CPU: 24, Mem: 60 GB, Disk: 60 GB)
+### 2.1 Launch an instance on Jetstream, using Ubuntu 18.04 Devel and Docker v1.22, with m1.xlarge (CPU: 24, Mem: 60 GB, Disk: 60 GB)
    ssh to the VM using
    ```
    # get the username and IP address
    ssh $USER@xxx.xxx.xxx.xxx
    ```
-2.2 Download this github repository with scripts (python scripts, snakefile, .sh) along with the dockerfile.
+### 2.2 Download this github repository with scripts (python scripts, snakefile, .sh) along with the dockerfile.
    ```
    git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-project.git
    ```
-2.3 Download the dataset (fasta, pfam, species.label; test data available) 
+### 2.3 Download the dataset (fasta, pfam, species.label; test data available) 
 
    ```https://drive.google.com/file/d/1yr3_NfQ6lpcGGN1tzJnb8RIBaEdAaLmK/view?usp=sharing```
 
@@ -48,7 +48,7 @@ Protein domains are independent sections of protein sequences that can have func
    ```
    unzip test_data.zip
 ```
-2.4 **For reproducibility test, go to Section 3.4 directly.** 
+### 2.4 *For reproducibility test, go to **Section 3.4** directly.* 
 
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile (explanation)
