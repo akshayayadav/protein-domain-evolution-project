@@ -30,7 +30,7 @@ git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-pro
 3. Download the dataset (fasta, pfam, species.label; test data available) and copy into the project directory.
   $USER is the username showed in echo $USER in VM. 
 ```
-scp -r <download dir>/data $USER@xxx.xxx.xxx.xx:/home/$USER/protein-domain-evolution-project/
+scp -r <download dir>/test_data $USER@xxx.xxx.xxx.xx:/home/$USER/Group5-protein-domain-evolution-project/
 ```
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile (explanation)
@@ -105,7 +105,7 @@ Use ```docker images``` to check the built images
 Since the data directory is not built into the container, we need to bind mount a volume with the data directory into the container. 
 
 ```
-docker run -v /home/$USER/Group5-protein-domain-evolution-project/data:/data domainevolution run_analysis.sh -c 24
+docker run -v /home/$USER/Group5-protein-domain-evolution-project/test_data:/data domainevolution run_analysis.sh -c 24
 ```
 The number "24" gives the number of cores passed to snakemake to run the analysis.
 
