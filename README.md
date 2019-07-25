@@ -18,7 +18,11 @@ If you are a total beginner to this, start here!
    #check it matches the username, if not, change any $USERNAME into the username
    echo $USER 
    ```
-   
+   ssh to the VM using
+   ```
+   # get the username and IP address
+   ssh $USER@xxx.xxx.xxx.xxx
+   ```
 2. Fork this github repository with scripts (python scripts, snakefile, .sh) along with the dockerfile.
 ```
 git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-project.git
