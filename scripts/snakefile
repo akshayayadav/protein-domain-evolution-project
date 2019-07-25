@@ -70,7 +70,7 @@ rule domain_versatility_matrix:
 
 rule domain_content_matrix_analysis:
  input:
- "/data/matrix_results/domain_content.matrix",
+  "/data/matrix_results/domain_content.matrix",
   "/data/species.label"
  output:
   "/data/final_results/domain_content.results",
