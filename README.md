@@ -75,7 +75,8 @@ RUN chmod +x /usr/local/bin/*
 - calculating the domain matrices (content, duplication, abundance, versatility) from domain assignments
 - analyzing domain matrices for filtering out significantly evolving domains
 
-![](https://i.imgur.com/NXAbrww.jpg)
+![](https://i.imgur.com/8grxKHe.png)
+
 
 2. The snakefile 
 - 1st step, run pfamscan.pl 
