@@ -22,7 +22,7 @@ git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-pro
 scp -r data $USERNAME@xxx.xxx.xxx.xx:/home/$USERNAME/protein-domain-evolution-project/
 ```
 ## 3. Build a Docker container
-### 3.1 Starting from Dockerfile
+### 3.1 Starting from Dockerfile (explanation)
 1. install make, perl, hmmer, pfamscan
 ```bash
 FROM ubuntu:16.04
@@ -51,7 +51,7 @@ ADD scripts /usr/local/bin
 # make the scripts executable
 RUN chmod +x /usr/local/bin/* 
 ```
-### 3.2 Making the snakemake workflow file
+### 3.2 Making the snakemake workflow file (explanation)
 
 1. The analysis includes three steps. 
 - assigning pfam protein domains to species fasta
@@ -77,7 +77,7 @@ rule domain_versatility_matrix:
 ```
 
 ```
-### 3.3 Build the container using Docker
+### 3.3 Build the container using Docker (hands on)
 
 Once the dockerfile and snakefile are ready, build the container using virtual machine as:
 
@@ -86,7 +86,7 @@ docker build -t domainevolution -f Docker/Dockerfile .
 ```
 Use ```docker images``` to check the built images
 
-### 3.4 Create and run a writeable container layer over the built image
+### 3.4 Create and run a writeable container layer over the built image (hands on)
 
 Since the data directory is not built into the container, we need to bind mount a volume with the data directory into the container. 
 
