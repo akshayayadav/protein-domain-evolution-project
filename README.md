@@ -105,7 +105,7 @@ Use ```docker images``` to check the built images
 Since the data directory is not built into the container, we need to bind mount a volume with the data directory into the container. 
 
 ```
-docker run -v /home/$USER/protein-domain-evolution-project/data:/data domainevolution run_analysis.sh -c 24
+docker run -v /home/$USER/Group-protein-domain-evolution-project/data:/data domainevolution run_analysis.sh -c 24
 ```
 The number "24" gives the number of cores passed to snakemake to run the analysis.
 
