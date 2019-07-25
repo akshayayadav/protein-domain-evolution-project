@@ -26,11 +26,6 @@ Protein domains are independent sections of protein sequences that can have func
 ## 2. How to start
 
 1. Launch an instance on Jetstream, using Ubuntu 18.04 Devel and Docker v1.22, with m1.xlarge (CPU: 24, Mem: 60 GB, Disk: 60 GB)
-   try 
-   ```
-   #check it matches the username, if not, change any $USERNAME into the username
-   echo $USER 
-   ```
    ssh to the VM using
    ```
    # get the username and IP address
