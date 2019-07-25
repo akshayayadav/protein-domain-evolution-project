@@ -23,7 +23,7 @@ scp -r data $USERNAME@xxx.xxx.xxx.xx:/home/$USERNAME/protein-domain-evolution-pr
 ```
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile
-1. install make, perl, hmmer, pfamscan
+1. Install make, perl, hmmer, pfamscan
 ```bash
 FROM ubuntu:16.04
 RUN apt-get update && \
@@ -31,7 +31,7 @@ RUN apt-get update && \
     cd /root/ && \
     wget "http://ftp.ebi.ac.uk/pub/databases/Pfam/Tools/OldPfamScan/PfamScan1.5/PfamScan.tar.gz"
 ```
-2. install python3 and libs to run the scripts
+2. Install python3 and libs to run the scripts
 ```
 RUN apt-get update \
   && apt-get install -y python3-pip python3-dev  #Version:Python 3.5.2
@@ -41,11 +41,11 @@ RUN pip3 install scipy  #Version:1.3.0
 RUN pip3 install sklearn  #Version:0.21.2
 RUN pip3 install matplotlib #Version:3.0.3
 ```
-3. install snakemake as the workflow management system
+3. Install snakemake as the workflow management system
 ```
 RUN pip3 install snakemake #Version:5.5.4
 ```
-4. add scripts for data analysis inside the container
+4. Add scripts for data analysis inside the container
 ```
 ADD scripts /usr/local/bin
 # make the scripts executable
