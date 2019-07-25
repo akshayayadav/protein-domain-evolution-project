@@ -86,5 +86,5 @@ Use ```docker images``` to check the built images
 Since the data directory is not built into the container, we need to bind mount a volume with the data directory into the container. 
 
 ```
-docker run -it -v /home/$USERNAME/protein-domain-evolution-project/data:/data domainevolution
+docker run -v /home/$USERNAME/protein-domain-evolution-project/data:/data domainevolution run_analysis.sh
 ```
