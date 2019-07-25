@@ -1,14 +1,27 @@
 Protein Domain Evolution
 ===
+## Group members
+- Akshay Yadav
+- Sumegha Godara
+- Yafang Guo
+
+Protein domains are independent sections of protein sequences that can have function distint functions. One of the major ways in which proteins can evovle is through domain insertion/delection/duplication. In this project we will attempt to build an analysis pipeline that will take in 2 groups of species proteomes and find differences in domain compositions between the two groups. The whole pipeline will be packaged inside a docker container which can executed  on any given data in any machine environment.
+
+## Inputs
+* Proteome fasta file for each species. The number of fasta files will depend of which two groups of species the user decides to compare and how many species the user the user wants in each group. It is recommended that there should be atleast 10 species per group to obtain significant results. These can be collected from following databases.
+    * [Phytozome](https://phytozome.jgi.doe.gov/pz/portal.html) for plant species
+    * [Uniprot](https://www.uniprot.org/proteomes/) for any species
+
+* The HMM file containing Pfam domains from  [Pfam](https://pfam.xfam.org/) database which contains registry of all the domains found in all the organisms. The HMM file must be processed using hmmpress program to create a HMM database. For more details on how to use the hmmpress tool please see the HMMER [user manual](http://hmmer.org/documentation.html).
 
 
 ## 1. Goals
 
-If you are a total beginner to this, start here!
+1. Construct a container with all the programs and dependencies required for the pipeline to run. The analysis pipeline is composed of 3 major steps viz. assigning domains to sequences in fasta, calculating domain matrices, and statistical analysis of domain matrices.
+ 
+2. Implementation of the analysis pipeline on snakemake worfkflow engine.
 
-1. Creat a docker file to build a container which will not require any software installation to run.
-2. Write a Snakemake file to generate a workflow and run the analysis in parallel.
-3. Dockerize the project to make it reproducible.
+3. Testing the reproducibility of the pipeline.
 
 ## 2. How to start
 
