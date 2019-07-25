@@ -63,6 +63,9 @@ def print_domain_content_matrix(domain_feature_matrix):
 ###########################################################################################################################
 #species_pfamscan_files_dirName = "/data/pfamscan_results/"
 species_pfamscan_files_dirName = sys.argv[1]
+
+print ("Calculating domain content matrix......")
+
 species_domain_dict = get_species_domain_dict(species_pfamscan_files_dirName)
 domain_feature_vector = get_domain_feature_vector(species_domain_dict)
 domain_feature_matrix = get_domain_feature_matrix_for_species(species_domain_dict, domain_feature_vector)

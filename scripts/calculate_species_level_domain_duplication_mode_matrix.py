@@ -108,6 +108,9 @@ def print_domain_feature_matrix(domain_feature_matrix):
 ################################################################################################################################
 #species_pfamscan_files_dirName = "/data/pfamscan_results/"
 species_pfamscan_files_dirName = sys.argv[1]
+
+print ("Calculating domain duplication mode matrix......")
+
 species_seqid_domarr_dict, domain_feature_vector = get_species_seqid_domarr_dict(species_pfamscan_files_dirName)
 species_domDuplicationCountarr_dict = get_species_domDuplicationCountarr_dict(species_seqid_domarr_dict)
 domain_feature_matrix = get_domain_duplication_feature_matrix_for_species(species_domDuplicationCountarr_dict, domain_feature_vector)
