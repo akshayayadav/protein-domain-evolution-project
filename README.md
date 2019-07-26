@@ -35,17 +35,6 @@ c). Testing the reproducibility of the pipeline.
    # get the username and IP address
    ssh $USER@xxx.xxx.xxx.xxx
    ```
-2.2 Download the dataset (fasta, pfam, species.label; test data available), then upzip it 
-
-   ```
-    wget https://de.cyverse.org/dl/d/D92472AE-62CA-4029-ABBE-66B2E23D06B1/test_data.tar.gz
-   ```
-   then untar it using
-   ```
-   tar -xzvf test_data.tar.gz
-   ```
-**2.3 *For reproducibility test, go to Section 3.4 directly.* **
-
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile (explanation)
 - Install make, perl #v5.22.1, hmmer, pfamscan
