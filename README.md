@@ -143,13 +143,4 @@ docker run -v <path to and including name of data directory>:/data <docker image
    ```
    The number "24" gives the number of cores passed to snakemake to run the analysis.
 
-## 4. Using the pre-built docker image
-The pre-built docker image can be downloaded from docker hub using the following command:
-```
-docker pull akshayayadav/protein-domain-evolution-project
-```
-and then run the docker using
-```
-docker run -v <path to data directory>:/data akshayayadav/protein-domain-evolution-project run_analysis.sh -c 24
-```
 
