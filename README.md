@@ -46,7 +46,7 @@ c). Testing the reproducibility of the pipeline.
    copy into the project directory.
    $USER is the username showed in echo $USER in VM. 
    ```
-   scp -r <download dir>/test_data $USER@xxx.xxx.xxx.xx:/home/$USER/Group5-protein-domain-evolution-project/
+   scp <download dir>/test_data.zip $USER@xxx.xxx.xxx.xxx:/home/$USER/Group5-protein-domain-evolution-project/
    ```
    then upzip it using 
    ```
