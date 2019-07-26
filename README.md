@@ -15,6 +15,8 @@ Protein domains are independent sections of protein sequences that can have func
 - Sumegha Godara
 - Yafang Guo
 
+# Instructions
+
 ## 1. Goals
 
 a). Construct a container with all the programs and dependencies required for the pipeline to run. The analysis pipeline is composed of 3 major steps viz. assigning domains to sequences in fasta, calculating domain matrices, and statistical analysis of domain matrices.
@@ -48,7 +50,7 @@ c). Testing the reproducibility of the pipeline.
    ```
    unzip test_data.zip
 ```
-**2.4 *For reproducibility test, go to Section 3.4 directly.* **
+** 2.4 *For reproducibility test, go to Section 3.4 directly.* **
 
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile (explanation)
@@ -115,7 +117,7 @@ c). Testing the reproducibility of the pipeline.
    ```
 ### 3.3 Build the container using Docker (hands on)
 
-   Once the dockerfile and snakefile are ready, build the container using virtual machine as:
+   Once the dockerfile and snakefile are ready, build the docker imager from the project directory and not the `Docker` directory.  as:
 
    ```bash
    docker build -t domainevolution -f Docker/Dockerfile .
@@ -123,8 +125,16 @@ c). Testing the reproducibility of the pipeline.
    Use ```docker images``` to check the built images
 
 ### 3.4 Create and run a writeable container layer over the built image (hands on)
+   - Pull the docker image from https://hub.docker.com/r/akshayayadav/protein-domain-evolution-project . 
 
-   Since the data directory is not built into the container, we need to bind mount a volume with the data directory into the container. 
+* Download the test data directory from https://drive.google.com/file/d/1yr3_NfQ6lpcGGN1tzJnb8RIBaEdAaLmK/view?usp=sharing containing the `fasta` and `pfam_database` directories, and `species.label` file.
+
+* Run the docker image using the following command:
+```
+docker run -v <path to and including name of data directory>:/data <docker image> run_analysis.sh -c <num cores>
+```
+
+   - Since the data directory is not built into the container, you need to bind mount a volume with the data directory into the container. 
 
    ```
    docker run -v /home/$USER/Group5-protein-domain-evolution-project/test_data:/data domainevolution run_analysis.sh -c 24
