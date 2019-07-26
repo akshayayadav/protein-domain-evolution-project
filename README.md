@@ -129,13 +129,6 @@ c). Testing the reproducibility of the pipeline.
 ### 3.4 Create and run a writeable container layer over the built image (hands on)
    - Pull the docker image from https://hub.docker.com/r/akshayayadav/protein-domain-evolution-project . 
 
-* Download the test data directory from https://drive.google.com/file/d/1yr3_NfQ6lpcGGN1tzJnb8RIBaEdAaLmK/view?usp=sharing containing the `fasta` and `pfam_database` directories, and `species.label` file.
-
-* Run the docker image using the following command:
-```
-docker run -v <path to and including name of data directory>:/data <docker image> run_analysis.sh -c <num cores>
-```
-
    - Since the data directory is not built into the container, you need to bind mount a volume with the data directory into the container. 
 
    ```
