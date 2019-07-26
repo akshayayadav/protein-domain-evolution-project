@@ -131,8 +131,8 @@ c). Testing the reproducibility of the pipeline.
    - Since the data directory is not built into the container, you need to bind mount a volume with the data directory into the container. 
 
    ```
-   docker run -v /home/$USER/Group5-protein-domain-evolution-project/test_data:/data akshayayadav/protein-domain-evolution-project run_analysis.sh -c 24
+   docker run -v /home/$USER/Group5-protein-domain-evolution-project/test_data:/data akshayayadav/protein-domain-evolution-project run_analysis.sh -c 10
    ```
-   The number "24" gives the number of cores passed to snakemake to run the analysis.
+   The number "10" gives the number of cores passed to snakemake to run the analysis.
 
 
