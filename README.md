@@ -35,21 +35,16 @@ c). Testing the reproducibility of the pipeline.
    # get the username and IP address
    ssh $USER@xxx.xxx.xxx.xxx
    ```
-2.2 Download this github repository with scripts (python scripts, snakefile, .sh) along with the dockerfile.
-   ```
-   git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-project.git
-   ```
-2.3 Download the dataset (fasta, pfam, species.label; test data available), then upzip it 
+2.2 Download the dataset (fasta, pfam, species.label; test data available), then upzip it 
 
-   ```https://drive.google.com/file/d/1yr3_NfQ6lpcGGN1tzJnb8RIBaEdAaLmK/view?usp=sharing```
-
-   copy the whole data folder into the project directory.
-   $USER is the username showed in echo $USER in VM. 
    ```
-   scp -r <download dir>/test_data $USER@xxx.xxx.xxx.xxx:/home/$USER/Group5-protein-domain-evolution-project/
+    wget https://de.cyverse.org/dl/d/D92472AE-62CA-4029-ABBE-66B2E23D06B1/test_data.tar.gz
    ```
-   
-**2.4 *For reproducibility test, go to Section 3.4 directly.* **
+   then untar it using
+   ```
+   tar -xzvf test_data.tar.gz
+   ```
+**2.3 *For reproducibility test, go to Section 3.4 directly.* **
 
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile (explanation)
@@ -131,7 +126,7 @@ c). Testing the reproducibility of the pipeline.
    - Since the data directory is not built into the container, you need to bind mount a volume with the data directory into the container. 
 
    ```
-   docker run -v /home/$USER/Group5-protein-domain-evolution-project/test_data:/data akshayayadav/protein-domain-evolution-project run_analysis.sh -c 10
+   docker run -v /home/$USER/test_data:/data akshayayadav/protein-domain-evolution-project run_analysis.sh -c 10
    ```
    The number "10" gives the number of cores passed to snakemake to run the analysis.
 
