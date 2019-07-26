@@ -50,7 +50,7 @@ c). Testing the reproducibility of the pipeline.
    ```
    unzip test_data.zip
 ```
-** 2.4 *For reproducibility test, go to Section 3.4 directly.* **
+**2.4 *For reproducibility test, go to Section 3.4 directly.* **
 
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile (explanation)
