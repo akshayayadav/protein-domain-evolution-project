@@ -39,7 +39,7 @@ c). Testing the reproducibility of the pipeline.
    ```
 2.3 Download the dataset (fasta, pfam, species.label; test data available) 
 
-   ```https://drive.google.com/file/d/1yr3_NfQ6lpcGGN1tzJnb8RIBaEdAaLmK/view?usp=sharing```
+   ```wget https://de.cyverse.org/dl/d/D92472AE-62CA-4029-ABBE-66B2E23D06B1/test_data.tar.gz```
 
    copy into the project directory.
    $USER is the username showed in echo $USER in VM. 
