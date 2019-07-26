@@ -17,6 +17,8 @@ Protein domains are independent sections of protein sequences that can have func
 - Sumegha Godara
 - Yafang Guo
 
+# Instructions
+
 ## 1. Goals
 
 a). Construct a container with all the programs and dependencies required for the pipeline to run. The analysis pipeline is composed of 3 major steps viz. assigning domains to sequences in fasta, calculating domain matrices, and statistical analysis of domain matrices.
@@ -33,20 +35,6 @@ c). Testing the reproducibility of the pipeline.
    # get the username and IP address
    ssh $USER@xxx.xxx.xxx.xxx
    ```
-2.2 Download this github repository with scripts (python scripts, snakefile, .sh) along with the dockerfile.
-   ```
-   git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-project.git
-   ```
-2.3 Download the dataset (fasta, pfam, species.label; test data available) 
-
-   ```wget https://de.cyverse.org/dl/d/D92472AE-62CA-4029-ABBE-66B2E23D06B1/test_data.tar.gz```
-
-   then untar it using 
-   ```
-   tar -xzvf test_data.tar.gz
-```
-**2.4 *For reproducibility test, go to Section 3.4 directly.* **
-
 ## 3. Build a Docker container
 ### 3.1 Starting from Dockerfile (explanation)
 - Install make, perl #v5.22.1, hmmer, pfamscan
@@ -112,7 +100,7 @@ c). Testing the reproducibility of the pipeline.
    ```
 ### 3.3 Build the container using Docker (hands on)
 
-   Once the dockerfile and snakefile are ready, build the container using virtual machine as:
+   Once the dockerfile and snakefile are ready, build the docker imager from the project directory and not the `Docker` directory.  as:
 
    ```bash
    docker build -t domainevolution -f Docker/Dockerfile .
@@ -120,21 +108,15 @@ c). Testing the reproducibility of the pipeline.
    Use ```docker images``` to check the built images
 
 ### 3.4 Create and run a writeable container layer over the built image (hands on)
-
-   Since the data directory is not built into the container, we need to bind mount a volume with the data directory into the container. 
+   - Pull the docker image from https://hub.docker.com/r/akshayayadav/protein-domain-evolution-project . 
+   ```
+   docker pull akshayayadav/protein-domain-evolution-project
+   ```
+   - Since the data directory is not built into the container, you need to bind mount a volume with the data directory into the container. 
 
    ```
-   docker run -v /home/$USER/Group5-protein-domain-evolution-project/test_data:/data domainevolution run_analysis.sh -c 24
+   docker run -v /home/$USER/test_data:/data akshayayadav/protein-domain-evolution-project run_analysis.sh -c 10
    ```
-   The number "24" gives the number of cores passed to snakemake to run the analysis.
+   The number "10" gives the number of cores passed to snakemake to run the analysis.
 
-## 4. Using the pre-built docker image
-The pre-built docker image can be downloaded from docker hub using the following command:
-```
-docker pull akshayayadav/protein-domain-evolution-project
-```
-and then run the docker using
-```
-docker run -v <path to data directory>:/data akshayayadav/protein-domain-evolution-project run_analysis.sh -c 24
-```
 
