@@ -39,19 +39,16 @@ c). Testing the reproducibility of the pipeline.
    ```
    git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-project.git
    ```
-2.3 Download the dataset (fasta, pfam, species.label; test data available) 
+2.3 Download the dataset (fasta, pfam, species.label; test data available), then upzip it 
 
    ```https://drive.google.com/file/d/1yr3_NfQ6lpcGGN1tzJnb8RIBaEdAaLmK/view?usp=sharing```
 
-   copy into the project directory.
+   copy the whole data folder into the project directory.
    $USER is the username showed in echo $USER in VM. 
    ```
-   scp <download dir>/test_data.zip $USER@xxx.xxx.xxx.xxx:/home/$USER/Group5-protein-domain-evolution-project/
+   scp -r <download dir>/test_data $USER@xxx.xxx.xxx.xxx:/home/$USER/Group5-protein-domain-evolution-project/
    ```
-   then upzip it using 
-   ```
-   unzip test_data.zip
-```
+   
 **2.4 *For reproducibility test, go to Section 3.4 directly.* **
 
 ## 3. Build a Docker container
