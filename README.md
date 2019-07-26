@@ -128,7 +128,9 @@ c). Testing the reproducibility of the pipeline.
 
 ### 3.4 Create and run a writeable container layer over the built image (hands on)
    - Pull the docker image from https://hub.docker.com/r/akshayayadav/protein-domain-evolution-project . 
-
+   ```
+   docker pull akshayayadav/protein-domain-evolution-project
+   ```
    - Since the data directory is not built into the container, you need to bind mount a volume with the data directory into the container. 
 
    ```
