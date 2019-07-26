@@ -41,14 +41,9 @@ c). Testing the reproducibility of the pipeline.
 
    ```wget https://de.cyverse.org/dl/d/D92472AE-62CA-4029-ABBE-66B2E23D06B1/test_data.tar.gz```
 
-   copy into the project directory.
-   $USER is the username showed in echo $USER in VM. 
+   then untar it using 
    ```
-   scp -r <download dir>/test_data $USER@xxx.xxx.xxx.xx:/home/$USER/Group5-protein-domain-evolution-project/
-   ```
-   then upzip it using 
-   ```
-   unzip test_data.zip
+   tar -xzvf test_data.tar.gz
 ```
 **2.4 *For reproducibility test, go to Section 3.4 directly.* **
 
