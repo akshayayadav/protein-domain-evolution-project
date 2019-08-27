@@ -108,11 +108,14 @@ c). Testing the reproducibility of the pipeline.
    rule domain_versatility_matrix_analysis:
    ```
 ### 3.3 Build the container using Docker (hands on)
-
-   Once the dockerfile and snakefile are ready, build the docker imager from the project directory and not the `Docker` directory.  as:
+   3.3.1 git clone the repository
+   ```
+   git clone https://github.com/cyber-carpentry/Group5-protein-domain-evolution-project.git
+   ```
+   Once the dockerfile and snakefile are ready, build the docker imager from the git directory and not the `Docker` directory.  as:
 
    ```bash
-   docker build -t domainevolution -f Docker/Dockerfile .
+   docker build -t akshayayadav/protein-domain-evolution-project -f Docker/Dockerfile .
    ```
    Use ```docker images``` to check the built images
 
