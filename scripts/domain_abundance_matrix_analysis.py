@@ -60,9 +60,34 @@ def multiple_testing_correction(domain_results):
 	domain_results['adjusted-p-values']=np.array(p_adjust)
 	return(domain_results)
 
-def print_significant_domains(domain_results, results_outfile):
-	sig_domains = domain_results.loc[domain_results['adjusted-p-values']<0.05]
+
+def print_significant_domains(sig_domains, results_outfile):
 	sig_domains.to_csv(results_outfile, index=False)
+
+
+def attach_gain_loss_labels_to_significant_domains(domain_results, domain_matrix):
+	sig_domains = domain_results.loc[domain_results['adjusted-p-values']<0.05]
+	domain_matrix_sig_domains = domain_matrix[list(sig_domains['domainID'])]
+	gain_loss_results = pd.DataFrame(domain_matrix_sig_domains.apply(calculate_gain_loss_labels, y_labels=domain_matrix['species_label']))
+	gain_loss_results = gain_loss_results.reset_index()
+	gain_loss_results.columns = ['domainID', 'gain_loss_status']
+	
+	sig_domains_gain_loss_status = sig_domains.join(gain_loss_results.set_index('domainID'), on='domainID')
+	return(sig_domains_gain_loss_status)
+
+def calculate_gain_loss_labels(domain_col, y_labels):
+	target = domain_col.loc[y_labels==1]
+	outgrp = domain_col.loc[y_labels==0]
+	target = np.array(target)
+	outgrp = np.array(outgrp)
+	target_mean = np.mean(target)
+	outgrp_mean = np.mean(outgrp)
+	
+	if(target_mean>=outgrp_mean):
+		return('+')
+	else:
+		return('-')
+
 
 def export_plot(domain_results, plot_outfile):
 	plt.rcParams["figure.figsize"] = (30,20)
@@ -92,5 +117,6 @@ sorted_domain_mutual_info_scores = calculate_domain_mutual_info_scores(X_domain_
 domain_signifance_test_results = run_signifance_tests_on_domain_cols(X_domain_matrix, y_labels)
 domain_results = join_MI_results_with_significance_results(sorted_domain_mutual_info_scores, domain_signifance_test_results)
 domain_results = multiple_testing_correction(domain_results)
-print_significant_domains(domain_results, results_outfile)
+sig_domains_gain_loss_status = attach_gain_loss_labels_to_significant_domains(domain_results, domain_matrix)
+print_significant_domains(sig_domains_gain_loss_status, results_outfile)
 export_plot(domain_results, plot_outfile)
