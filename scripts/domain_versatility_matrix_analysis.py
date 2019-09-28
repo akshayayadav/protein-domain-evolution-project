@@ -13,7 +13,8 @@ import matplotlib.pyplot as plt
 rpy2.robjects.numpy2ri.activate()
 
 def read_matrix_file(matrix_fileName, species_label_fileName):
-	domain_matrix = pd.read_csv(matrix_fileName, sep=",", header=0)
+	domain_matrix = pd.read_csv(matrix_fileName, sep=",", header=0, na_values = 'NA')
+	domain_matrix.dropna(axis=1, inplace=True)
 	species_table = pd.read_csv(species_label_fileName, sep=",", header=0)
 	domain_matrix = domain_matrix.join(species_table.set_index('species'), on='species')
 	return(domain_matrix)
@@ -81,7 +82,7 @@ def calculate_gain_loss_labels(domain_col, y_labels):
 	target_mean = np.mean(target)
 	outgrp_mean = np.mean(outgrp)
 	
-	if(target_mean>=outgrp_mean):
+	if(target_mean<=outgrp_mean):
 		return('+')
 	else:
 		return('-')

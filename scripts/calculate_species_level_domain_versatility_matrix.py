@@ -91,9 +91,9 @@ def get_domain_versatility_feature_matrix_for_species(species_domvrstlty_dict, d
 				if(len(species_domvrstlty_dict[species][domain])>0):
 					feature_vector.append(1/len(species_domvrstlty_dict[species][domain]))
 				else:
-					feature_vector.append(0)
+					feature_vector.append('NA')
 			else:
-				feature_vector.append(0)
+				feature_vector.append('NA')
 		domain_feature_matrix.loc[count] = list(feature_vector)
 		count+=1
 

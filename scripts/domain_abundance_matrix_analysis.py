@@ -83,7 +83,7 @@ def calculate_gain_loss_labels(domain_col, y_labels):
 	target_mean = np.mean(target)
 	outgrp_mean = np.mean(outgrp)
 	
-	if(target_mean>=outgrp_mean):
+	if(target_mean<=outgrp_mean):
 		return('+')
 	else:
 		return('-')

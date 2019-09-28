@@ -58,7 +58,7 @@ def get_species_domAbdnce_dict(species_seqid_domarr_dict):
 	
 	return(species_domAbdnce_dict)
 
-def get_domain_abundance_feature_matrix_for_species(species_domAbdnce_dict, domain_feature_vector):
+def get_domain_abundance_feature_matrix_for_species(species_domAbdnce_dict, domain_feature_vector, species_seqid_domarr_dict):
 	domain_feature_vector.insert(0, 'species')
 	domain_feature_matrix = pd.DataFrame(columns = domain_feature_vector)
 	domain_feature_vector.pop(0)
@@ -72,7 +72,7 @@ def get_domain_abundance_feature_matrix_for_species(species_domAbdnce_dict, doma
 			if(domain in species_domAbdnce_dict[species]):
 				feature_vector.append(species_domAbdnce_dict[species][domain])
 			else:
-				feature_vector.append(0)
+				feature_vector.append(log((len(species_seqid_domarr_dict[species])/0.01), 2))
 		domain_feature_matrix.loc[count] = list(feature_vector)
 		count+=1
 
@@ -94,6 +94,6 @@ print ("Calculating domain abundance matrix......")
 
 species_seqid_domarr_dict, domain_feature_vector = get_species_seqid_domarr_dict(species_pfamscan_files_dirName)
 species_domAbdnce_dict = get_species_domAbdnce_dict(species_seqid_domarr_dict)
-domain_feature_matrix = get_domain_abundance_feature_matrix_for_species(species_domAbdnce_dict, domain_feature_vector)
+domain_feature_matrix = get_domain_abundance_feature_matrix_for_species(species_domAbdnce_dict, domain_feature_vector, species_seqid_domarr_dict)
 domain_feature_matrix = remove_constantly_abundant_domains(domain_feature_matrix)
 print_domain_feature_matrix(domain_feature_matrix)
