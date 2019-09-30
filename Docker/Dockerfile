@@ -34,7 +34,7 @@ RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | tee -a /etc/ap
     gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9 && \
     gpg -a --export E084DAB9 | apt-key add && \
     apt-get update && \
-    apt-get install -y r-base r-base-dev && \
+    apt-get install -y --allow-unauthenticated r-base r-base-dev && \
     apt-get autoremove && \
     apt-get clean
 
