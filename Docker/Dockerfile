@@ -25,8 +25,8 @@ RUN apt-get update \
   && apt-get autoremove \
   && apt-get clean
 
-RUN pip3 install snakemake
-RUN pip3 install pandas
+RUN pip3 install 'snakemake==5.5.4'
+RUN pip3 install 'pandas==0.24.2'
 
 RUN apt install -y libffi-dev libssl-dev
 
@@ -38,10 +38,10 @@ RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | tee -a /etc/ap
     apt-get autoremove && \
     apt-get clean
 
-RUN pip3 install rpy2
-RUN pip3 install scipy
-RUN pip3 install sklearn
-RUN pip3 install matplotlib
+RUN pip3 install 'rpy2==3.0.5'
+RUN pip3 install 'scipy==1.3.0'
+RUN pip3 install 'sklearn==0.21.2'
+RUN pip3 install 'matplotlib==3.0.3'
 
 ADD scripts /usr/local/bin
 RUN chmod +x /usr/local/bin/*
