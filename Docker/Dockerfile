@@ -40,7 +40,7 @@ RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | tee -a /etc/ap
 
 RUN pip3 install 'rpy2==3.0.5'
 RUN pip3 install 'scipy==1.3.0'
-RUN pip3 install 'sklearn==0.21.2'
+RUN pip3 install 'scikit-learn==0.21.3'
 RUN pip3 install 'matplotlib==3.0.3'
 
 ADD scripts /usr/local/bin
